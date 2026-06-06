@@ -1,2 +1,5 @@
-# ObsidianVault
-I will be storing notes from obsidian such as ML notes, ect
+# Obsidian Vault
+I will be storing notes from obsidian such as ML notes, etc.
+
+
+TE
