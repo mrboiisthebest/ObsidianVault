@@ -51,8 +51,13 @@ $$ Y \approx \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p $$
 **2.1.4  Supervised Versus Unsupervised Learning**
 - examples that we have discussed so far in this chapter all fall into the supervised learning domain
 $$(s) xi, i =1,...,n $$
-- **Supervised** - For each observation of the predictor measurement there is an associated response
-- 
+- **Supervised** - For each observation of the predictor measurement there is an associated response. No response variable to predict
+- Cluster analysis tries to get a correct answer in the ballpark of the truth
+![[Pasted image 20260609120241.png]]
+**2.1.5  Regression Versus Classification Problems**
+- Variables can be characterized as either quantitative or qualitative
+- We tend to refer to problems with a quantitative response as **regression problems**
+- those involving a regression qualitative response are often referred to as **classification problems**
 
 
 
