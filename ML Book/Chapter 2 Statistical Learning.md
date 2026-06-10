@@ -59,6 +59,52 @@ $$(s) xi, i =1,...,n $$
 - We tend to refer to problems with a quantitative response as **regression problems**
 - those involving a regression qualitative response are often referred to as **classification problems**
 
+# 2.2 Assessing Model Accuracy
+
+- You need more than one method for statistical approaches
+**2.2.1 Measuring the Quality of Fit**
+
+$$ \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{f}(x_i))^2 $$
+- We need a numerical way to see how  close the data is to the real data using Mean Squared Error (**MSE**)
+- Computed using training data (**Training MSE**)
+- More interested in prediction accuracy not **past** accuracy
+![[Pasted image 20260610102030.png]]
+- Using large test data we can use, used to find lowest MSE
+$$Ave(y_0 - \hat f (x_0))^2$$
+![[Pasted image 20260610102424.png]]
+- Training MSE should be smaller than Test MSE
+**2.2.2 The Bias-Variance Trade-Off**
+![[Pasted image 20260610102619.png]]
+- more flexible model has lower MSE (which is good)
+$$$E \left( y_0 - \hat{f}(x_0) \right)^2 = \text{Var}(\hat{f}(x_0)) + [\text{Bias}(\hat{f}(x_0))]^2 + \text{Var}(\epsilon)$
+$$
+Shows expected test MSE
+![[Pasted image 20260610103147.png]]
+- As a general rule, as we use more flexible methods, the variance will increase and the bias will decrease
+**2.2.3 The Classification Setting**
+$$\frac{1}{n} \sum_{i=1}^{n} I(y_i \neq \hat{y}_i)$$
+- common approach for quantifying the accuracy of our estimate with **error rate**
+- **computed** based on the data that was used to train our classifier
+**The Bayes Classifier**
+$$\Pr(Y = j \mid X = x_0)$$
+test observation with predictor vector
+
+
+![[Pasted image 20260610103826.png]]
+- The Bayes classifier produces the lowest possible test error rate, called the Bayes error rate
+$$1 - \mathbb{E} \left( \max_{j} \Pr(Y = j \mid X) \right)$$the overall Bayes error rate is given
+
+
+**K-Nearest Neighbors**
+$$\Pr(Y = j \mid X = x_0) = \frac{1}{K} \sum_{i \in \mathcal{N}_0} I(y_i = j)$$
+- It then estimates the conditional probability for class j as the fraction of points in N0 whose response values equal j
+![[Pasted image 20260610104156.png]]
+![[Pasted image 20260610104207.png]]
+![[Pasted image 20260610104235.png]]
+- various methods for estimating test error rates and thereby choosing the optimal level of flexibility for a given statistical learning method.
+
+# 2.3
+
 
 
 
