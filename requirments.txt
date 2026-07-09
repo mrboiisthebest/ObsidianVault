@@ -8,3 +8,4 @@ pygame
 mss
 opencv-python
 pywinctl
+vgamepad
