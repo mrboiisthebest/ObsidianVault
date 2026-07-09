@@ -5,3 +5,6 @@ matplotlib
 scikit-learn
 gymnasium
 pygame
+mss
+opencv-python
+pywinctl
