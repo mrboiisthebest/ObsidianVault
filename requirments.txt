@@ -9,3 +9,5 @@ mss
 opencv-python
 pywinctl
 vgamepad
+pynput
+rembg
