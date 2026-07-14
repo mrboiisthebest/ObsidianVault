@@ -10,4 +10,4 @@ opencv-python
 pywinctl
 vgamepad
 pynput
-rembg
+pydirectinput
