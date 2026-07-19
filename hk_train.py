@@ -22,7 +22,7 @@ env = Monitor(base_env)
 
 # 3. Set Your Custom Life/Epoch Limit
 # If you set this to 100, the script cuts off right as the 100th run ends!
-MAX_BOSS_RUNS = 1
+MAX_BOSS_RUNS = 10
 stop_callback = StopTrainingOnMaxEpisodes(max_episodes=MAX_BOSS_RUNS, verbose=1)
 
 # 4. Create the PPO Model Agent Brain

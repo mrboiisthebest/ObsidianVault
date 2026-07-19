@@ -30,9 +30,13 @@ class HollowKnightGymEnv(gym.Env):
         self.HORNET_RED_HI_1 = np.array([180, 255, 220]) 
         
         self.PLAYER_WHITE_LO = np.array([0, 0, 240])    
-        self.PLAYER_WHITE_HI = np.array([180, 15, 255]) 
+        self.PLAYER_WHITE_HI = np.array([180, 15, 255])
+        
+        self.left_held = False
+        self.right_held = False
 
         # --- Load Player Templates ---
+        print("Pre-loading player templates into RAM...", flush=True)
         self.player_templates = self._get_player_images(flip=True)
         
         # --- Gym Spaces ---
@@ -96,6 +100,8 @@ class HollowKnightGymEnv(gym.Env):
         
         boss_box = self._get_boss_bounds(raw_frame)
         player_box = self._get_player_bounds(raw_frame, boss_bounds=boss_box)
+        
+        boss_hit_detected = False
         
         health_frame = raw_frame[80:120, 245:675, :3]
         current_masks = self._get_masks(health_frame)
@@ -316,34 +322,41 @@ class HollowKnightGymEnv(gym.Env):
     
     def _take_action(self, action):
         # 1. Clean up key hold logic states
-        if action != 1:
+        if action != 1 and self.left_held:
             pydirectinput.keyUp('a')
-        if action != 2:
+            self.left_held = False
+        if action != 2 and self.right_held:
             pydirectinput.keyUp('d')
+            self.right_held = False
 
         # 2. Translate discrete action directly to inputs
         if action == 0:  # Stay still
             pass
         elif action == 1:  # Move Left
-            pydirectinput.keyDown('a')
+            if not self.left_held:
+                pydirectinput.keyDown('a')
+                self.left_held = True
         elif action == 2:  # Move Right
-            pydirectinput.keyDown('d')
+            if not self.right_held:
+                pydirectinput.keyDown('d')
+                self.right_held = True
         elif action == 3:  # Attack
             pydirectinput.press('r') 
-            self.last_attack_time = time.time() # Sync hit tracker clock
+            self.last_attack_time = time.time()
         elif action == 4:  # Jump
             pydirectinput.press('space')
         elif action == 5:  # Dash
-            pydirectinput.press('t') 
+            pydirectinput.press('t')
 
     def _reset_game_macro(self):
         # Clear direction locks before macro navigation runs
         pydirectinput.keyUp('a')
         pydirectinput.keyUp('d')
+        time.sleep(5.0)
         
-        print("[Macro] Resetting...", flush=True)
+        print("[Macro] Resetting...")
         pydirectinput.press('space')
-        time.sleep(1.0)
+        time.sleep(2.0)
         pydirectinput.press('w')
         time.sleep(0.3)
         pydirectinput.press('space')
